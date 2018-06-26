@@ -18,3 +18,15 @@ class UserProfile(models.Model):
 
     def save_profile(self):
         self.save()
+
+class Neighborhood(models.Model):
+    '''
+    class for saving neighbourhood data
+    '''
+    name  = models.CharField(max_length = 30)
+    location = models.CharField(max_length = 30)
+    occupant_count = models.IntegerField()
+    def __str__(self):
+        return self.name
+    def save_neighborhood(self):
+        self.save()
