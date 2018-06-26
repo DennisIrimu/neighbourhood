@@ -30,3 +30,17 @@ class Neighborhood(models.Model):
         return self.name
     def save_neighborhood(self):
         self.save()
+
+class Business(models.Model):
+    '''
+    model that displays businesses in a certain area
+    '''
+    name = models.CharField(max_length = 100)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete = models.CASCADE, null=True)
+    email= models.CharField(max_length = 100)
+    def __str__(self):
+       return self.name
+
+    def save_business(self):
+        self.save()
