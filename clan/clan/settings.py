@@ -15,6 +15,7 @@ from decouple import config
 import django_heroku
 django_heroku.settings(locals(), staticfiles=False)
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap3',
+    'neighbour',
+
 ]
 
 MIDDLEWARE = [
@@ -50,7 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.midddleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'clan.urls'
@@ -79,7 +84,7 @@ WSGI_APPLICATION = 'clan.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgreql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DBNAME'),
         'USER': config('DBUSER'),
         'PASSWORD': config('DBPASSWORD')
@@ -113,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
