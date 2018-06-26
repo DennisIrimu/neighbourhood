@@ -5,23 +5,22 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             {% if form.errors %}
-            <p> Password or Username is incorrect </p>
+            <p> Some Information Might be Incorrect </p>
             {% endif %}
             <div class="panel panel-default">
 
                 <div class="panel-heading">
-                    <h1 class="h3 mb-3 font-weight-normal" style="text-align:center;">Sign In</h1>
+                    <h1 class="h3 mb-3 font-weight-normal" style="text-align:center;">Sign Up</h1>
                 </div>
                 <div class="panel-body">
 
-                    <form action="/accounts/login/" method="post">
-                        {% csrf_token %} {% bootstrap_form form%}
-
+                    <form action="/accounts/register/" method="post">
+                        {% csrf_token %} {% bootstrap_form form %}
                         <div class="form-group">
-                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value=" Sign Up ">
                         </div>
 
-                        <input type="hidden" name="next" value="{{next}}">
+                        <!-- <input type="hidden " name="next " value="{{next}} "> -->
 
                     </form>
 
@@ -31,7 +30,7 @@
 
         </div>
         <!-- empty div -->
-        <div class="col-md-4"></div>
+        <div class="col-md-4 "></div>
     </div>
 </div>
 
