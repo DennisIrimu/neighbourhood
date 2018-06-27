@@ -48,3 +48,23 @@ def neighborhood(request):
     except ValueError:
         Http404
     return render(request,'neighborhood.html',{"form":form,})
+
+def business(request):
+    '''
+    function to create a new business
+    '''
+    current_user = request.user
+    try:
+        if request.method == 'POST':
+            form = BusinessForm(request.POST,request.FILES)
+            if form.is_valid():
+                post = form.save(commit = False)
+                post.user = current_user
+                post.save()
+            return redirect('/viewbusiness')
+        else:
+            form = BusinessForm()
+
+    except ValueError:
+        Http404
+    return render(request,'business.html',{"form":form,})
