@@ -1,6 +1,12 @@
 from django.db import models
+import datetime as dt
+from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
 
- Create your models here.
+# Create your models here.
+
 class UserProfile(models.Model):
     '''
     User class to save app user data
@@ -44,3 +50,13 @@ class Business(models.Model):
 
     def save_business(self):
         self.save()
+
+class Post(models.Model):
+   '''
+   model that saves posts for the neighborhood
+   '''
+   title = models.CharField(max_length  = 100,null = True)
+   post = models.TextField(max_length=100,null = True)
+   profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
+   user = models.ForeignKey(User,on_delete=models.CASCADE)
+   time = models.DateTimeField(auto_now_add=True,null = True)
