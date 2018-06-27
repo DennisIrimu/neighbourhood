@@ -60,3 +60,14 @@ class Post(models.Model):
    profile = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
    user = models.ForeignKey(User,on_delete=models.CASCADE)
    time = models.DateTimeField(auto_now_add=True,null = True)
+
+class Services(models.Model):
+   '''
+   model that saves the services data
+   '''
+   police_station = models.CharField(max_length = 30,blank = True)
+   police_no = models.IntegerField(10,blank = True)
+   police_location = models.CharField(max_length = 30,blank = True)
+   healthcare_centre = models.CharField(max_length = 30,blank = True)
+   healthcare_no = models.IntegerField(10,blank = True)
+   healthcare_location = models.CharField(max_length = 30 ,blank = True)
