@@ -28,3 +28,23 @@ def profile(request,id):
 def index(request):
     neighborhood = Neighborhood.objects.all()
     return render(request,'index.html',{"neighborhood":Neighborhood})
+
+def neighborhood(request):
+    '''
+    function to fill the neighborhood form
+    '''
+    current_user = request.user
+    try:
+        if request.method == 'POST':
+            form = NeighborhoodForm(request.POST,request.FILES)
+            if form.is_valid():
+                neighborhood = form.save(commit = False)
+                neighborhood.user = current_user
+                neighborhood.save()
+            return redirect('/profile')
+        else:
+            form = NeighborhoodForm()
+
+    except ValueError:
+        Http404
+    return render(request,'neighborhood.html',{"form":form,})
