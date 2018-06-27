@@ -96,3 +96,30 @@ def viewBusiness(request):
     '''
     business = Business.objects.all()
     return render(request,'viewbusiness.html',{"business":business})
+
+def post(request):
+    '''
+    function to create a new post
+    '''
+    current_user = request.user
+    try:
+        if request.method == 'POST':
+            form = PostForm(request.POST,request.FILES)
+            if form.is_valid():
+                post = form.save(commit = False)
+                post.user = current_user
+                post.save()
+            return redirect('/viewpost')
+        else:
+            form = PostForm()
+
+    except ValueError:
+        Http404
+    return render(request,'post.html',{"form":form,})
+
+def viewPost(request):
+    '''
+    function to view posts
+    '''
+    posts= Post.objects.all()
+    return render(request,'viewpost.html',{"posts":posts})
