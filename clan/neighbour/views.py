@@ -123,3 +123,29 @@ def viewPost(request):
     '''
     posts= Post.objects.all()
     return render(request,'viewpost.html',{"posts":posts})
+def services(request):
+    '''
+    function to create a new business
+    '''
+    current_user = request.user
+    try:
+        if request.method == 'POST':
+            form = ServiceForm(request.POST,request.FILES)
+            if form.is_valid():
+                post = form.save(commit = False)
+                post.user = current_user
+                post.save()
+            return redirect('/viewservices')
+        else:
+            form = ServiceForm()
+
+    except ValueError:
+        Http404
+    return render(request,'services.html',{"form":form,})
+
+def viewServices(request):
+    '''
+    function to view business
+    '''
+    services = Services.objects.all()
+    return render(request,'viewservices.html',{"services":services})
