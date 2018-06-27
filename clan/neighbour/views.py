@@ -8,6 +8,27 @@ from django.http import Http404
 # Create your views here.
 
 @login_required(login_url='/accounts/login/')
+def update_profile(request):
+    '''
+    function to update the profile form
+    '''
+    title="Neighborhood | Profile Edit "
+    current_user = request.user
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user=current_user
+            if UserProfile.objects.filter(user_id=current_user.id).exists():
+                UserProfile.objects.filter(user_id=current_user.id).delete()
+            profile.save()
+            return redirect('/')
+
+    else:
+        form = UserProfileForm()
+
+    return render(request, 'editprofile.html', {"title":title,"form": form})
+@login_required(login_url='/accounts/login/')
 def profile(request,id):
     '''
     function to display the user profile
@@ -68,3 +89,10 @@ def business(request):
     except ValueError:
         Http404
     return render(request,'business.html',{"form":form,})
+
+def viewBusiness(request):
+    '''
+    function to view business
+    '''
+    business = Business.objects.all()
+    return render(request,'viewbusiness.html',{"business":business})
