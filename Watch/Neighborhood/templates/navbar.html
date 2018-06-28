@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-xl navbar-dark  navbar-togglable  fixed-top" style="color:black;">
+    <div class="container">
+
+        <!-- Brand -->
+
+        <a class="navbar-brand" href="{% url 'index' %}" class="nav-link" style="color: black">
+                Neighborhood Watch
+        </a>
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+
+            <form class="navbar-form navbar-left" role="search" action="{% url 'searchbusiness' %}">
+                <div class="form-group navbar-right">
+                    <input style="background:white;" type="text" class="form-control" placeholder="Search Business" name="name">
+                </div>
+
+            </form>
+            <!-- Links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ">
+                    <a href="{% url 'viewbusiness' %}" class="nav-link" style="color: black">
+                    Businesses
+                </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{% url 'viewpost' %}" class="nav-link" style="color: black">
+                    Neighborhood Posts
+                </a>
+                </li>
+                <li class="nav-item ">
+                    <a href="{% url 'viewservices' %}" class="nav-link" style="color: black">
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item-divider">
+                    <span class="nav-link">
+                        <span></span>
+                    </span>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarProfile">
+                        <a class="dropdown-item  active " href="{% url 'post' %}">
+                            Create Post
+                        </a>
+                        <a class="dropdown-item " href="{% url 'profile' user.id %}">
+                            {{user.username}}
+                        </a>
+                        <a class="dropdown-item " href="/accounts/password/change">
+                            Change Password
+                        </a>
+                        <a class="dropdown-item " href="/logout">
+                            Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+        <!-- / .navbar-collapse -->
+
+    </div>
+    <!-- / .container -->
+
+</nav>

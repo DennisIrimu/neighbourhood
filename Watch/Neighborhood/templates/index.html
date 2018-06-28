@@ -1,0 +1,263 @@
+{%extends 'base.html'%} {% block content %} {% load bootstrap3 %}{% load static%}{{ block.super}} {% block styles %} {% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}"> {% endblock %}
+
+<section class="section section-top section-full">
+
+    <!-- Cover -->
+    <div class="bg-cover" style="padding-bottom: 10%;margin-bottom: 0px;opacity: 0.8;color: #000;background: #000 url(' ../static/images/neighborhood2.jpeg ') center center;width: 100%;height: 100%;background-size: cover;">
+        <!-- Overlay -->
+        <div class="bg-overlay"></div>
+
+        <!-- Triangles -->
+        <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-left"></div>
+        <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-right"></div>
+
+        <!-- Content -->
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                {% if neighborhood %}{% for hood in neighborhood %}
+                <div class="col-md-8 col-lg-7" style="padding-top: 15%;">
+
+                    <!-- Preheading -->
+                    <h1 class="text-black text-muted text-uppercase text-center text-sm" data-animation="fadeUp" data-animation-order="0" data-animation-trigger="entered">
+                        {{ hood.name }}
+                    </h1>
+
+                    <!-- Heading -->
+                    <h3 class="text-center mb-4" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="entered">
+                        {{ hood.location }}
+                    </h3>
+
+                    <!-- Subheading -->
+                    <p class="lead text-white text-muted text-center mb-5" data-animation="fadeUp" data-animation-order="2" data-animation-trigger="entered">
+                        Occupant Count: {{hood.occupant_count}}
+                    </p>
+
+                    <!-- Button -->
+                    <p class="text-center mb-0" data-animation="fadeUp" data-animation-order="3" data-animation-trigger="entered">
+                        <a href="{% url 'viewpost' %}" target="_blank" class="btn btn-outline-primary">
+                    Check Out Posts
+                </a>
+                    </p>
+
+                </div>
+                {% endfor %} {% endif %}
+            </div>
+            <!-- / .row -->
+        </div>
+        <!-- / .container -->
+
+    </div>
+
+
+</section>
+<!-- SECTIONS
+		================================================== -->
+<!-- PAGES
+		================================================== -->
+<section class="section" id="pages">
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            {% if neighborhood %}{% for hood in neighborhood %}
+            <div class="col-md-8 col-lg-6">
+
+                <!-- Heading -->
+                <h2 class="text-center mb-4">
+                    About {{ hood.name }}
+                </h2>
+
+                <!-- Subheading -->
+                <p class="text-muted text-center mb-5">
+                    {{ hood.name }} is an amazing neighborhood at the heart of {{ hood.location }}. It has a population of {{hood.occupant_count}} people who live in harmony.
+                </p>
+
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+        <!-- / .row -->
+        <div class="row">
+            <div class="col-md-4">
+
+                <!-- Item -->
+                <a href="{% url 'viewbusiness' %}" class="card border-0 mb-3 mb-md-0">
+
+                    <!-- Image -->
+                    <div class="card-img-top">
+                        <img src="static/images/businesses.jpeg" alt="Businesses" class="img-fluid">
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body">
+
+                        <!-- Title -->
+                        <h4 class="card-title">
+                            Businesses
+                        </h4>
+
+                        <!-- Body -->
+                        <p class="card-text text-muted">
+                            Use this page to view the different businesses in MIAMBANI
+                        </p>
+
+                    </div>
+
+                </a>
+                <!-- / .card -->
+
+            </div>
+            <div class="col-md-4">
+
+                <!-- Item -->
+                <a href="{% url 'viewservices' %}" class="card border-0 mb-3">
+
+                    <!-- Image -->
+                    <div class="card-img-top">
+                        <img src="static/images/neighborhood3.jpeg" alt="Services" class="img-fluid" style="background-size:10%;">
+                    </div>
+
+                    <!-- Body -->
+                    <div class=" card-body ">
+
+                        <!-- Title -->
+                        <h4 class="card-title ">
+                            Services
+                        </h4>
+
+                        <!-- Body -->
+                        <p class="card-text text-muted ">
+                            Use this page to find contact information for health and police
+                        </p>
+
+                    </div>
+
+                </a>
+                <!-- / .card -->
+
+            </div>
+            <div class="col-md-4 ">
+
+                <!-- Item -->
+                <a href="{% url 'post' %}" class="card border-0 mb-3 mb-md-0 ">
+
+                    <!-- Image -->
+                    <div class="card-img-top ">
+                        <img src="static/images/image3.jpeg " alt="New Post " class="img-fluid ">
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body ">
+
+                        <!-- Title -->
+                        <h4 class="card-title ">
+                            Create a Post
+                        </h4>
+
+                        <!-- Body -->
+                        <p class="card-text text-muted ">
+                            Use this page to create a new post
+                        </p>
+
+                    </div>
+
+                </a>
+                <!-- / .card -->
+
+            </div>
+
+
+            <!-- / .container -->
+
+</section>
+
+
+<!-- QUOTE
+		================================================== -->
+<section class="section ">
+
+    <!-- Content -->
+    <div class="container ">
+        <div class="row justify-content-center ">
+            <div class="col-md-9 ">
+
+                <!-- Quote -->
+                <div class="quote ">
+                    <blockquote class="quote-blockquote ">
+                        <p class="quote-blockquote-content ">
+                        </p>
+                        <footer class="quote-blockquote-footer ">
+                            <span class="text-zigzag ">
+
+                            </span>
+                        </footer>
+                    </blockquote>
+                </div>
+                <!-- / .quote -->
+
+            </div>
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+
+</section>
+
+<!-- FOOTER
+		================================================== -->
+<footer class="section bg-dark ">
+
+    <!-- Triangles -->
+    <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-left "></div>
+    <div class="bg-triangle bg-triangle-light bg-triangle-bottom bg-triangle-right "></div>
+
+    <!--Content -->
+    <div class="container ">
+        <div class="row align-self-center ">
+            <div class="col-md-6 ">
+
+                <!-- Brand -->
+                <p>
+                    <a class="navbar-brand" href="{% url 'index' %}" class="nav-link" style="color: white">
+                         Neighborhood Watch
+                    </a>
+                </p>
+
+            </div>
+            <div class="col-md-6 ">
+
+                <!-- Links -->
+                <ul class="footer-links justify-content-end ">
+                    <li>
+                        <a href="# " class="text-white ">
+                            Terms and conditions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="# " class="text-white ">
+                            Privacy policy
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- / .row -->
+        <div class="row align-items-center ">
+            <div class="col-md-8 ">
+
+                <!-- Copyright -->
+                <p class="text-white text-muted ">
+                    <small>
+                        &copy; Copyright
+                        <span class="current-year "></span> Neighborhood Watch. All rights reserved.
+                    </small>
+                </p>
+
+            </div>
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+
+</footer>{% endblock %}
