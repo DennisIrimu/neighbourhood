@@ -46,9 +46,6 @@ def profile(request,id):
     except ValueError:
         raise Http404()
 
-def index(request):
-    neighborhood = Neighborhood.objects.all()
-    return render(request,'index.html',{"neighborhood":Neighborhood})
 
 def neighborhood(request):
     '''
@@ -69,6 +66,11 @@ def neighborhood(request):
     except ValueError:
         Http404
     return render(request,'neighborhood.html',{"form":form,})
+
+def index(request):
+    neighborhood = Neighborhood.objects.all()
+    return render(request,'index.html',{"neighborhood":neighborhood})
+
 
 def business(request):
     '''
