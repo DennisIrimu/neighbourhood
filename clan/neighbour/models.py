@@ -37,6 +37,18 @@ class Neighborhood(models.Model):
     def save_neighborhood(self):
         self.save()
 
+    @classmethod
+    def delete_neighborhood(cls,id):
+        cls.objects.filter(id).delete()
+    @classmethod
+    def update_neighborhood(cls,id,new_name):
+        cls.objects.filter(id=id).update(name = new_name)
+
+    @classmethod
+    def update_occupant_count(cls,id,new_occupant):
+        cls.objects.filter(id=id).update(occupant_count =new_occupant)
+        
+
 class Business(models.Model):
     '''
     model that displays businesses in a certain area
