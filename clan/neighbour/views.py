@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import UserProfileForm,NeighborhoodForm,BusinessForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,authenticate
-from .models import UserProfile,Neighborhood,Business,Service
+from .models import UserProfile,Neighborhood,Business,Service,Post
 from django.http import Http404
 # Create your views here.
 
@@ -149,3 +149,18 @@ def viewServices(request):
     '''
     services = Services.objects.all()
     return render(request,'viewservices.html',{"services":services})
+
+def search_business(request):
+    '''
+    function to search by business name
+    '''
+    if 'name' in request.GET and request.GET["name"]:
+        searched_business = request.GET.get("name")
+        business = Business.search_business(searched_business)
+        message = f"{searched_business}"
+
+        return render(request, 'search.html', {"message": message, "business":business})
+
+    else:
+        message = "Sorry, No one by this username"
+        return render(request, 'search.html', {"message": message})
